@@ -14,4 +14,3 @@ class ProductPage(BasePage):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message did not disappear, but it should"
 
-

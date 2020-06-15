@@ -22,16 +22,8 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.add_to_basket()
     page.solve_quiz_and_get_code()
     time.sleep(1)
-    name_in_basket = browser.find_element_by_css_selector("#messages>div:nth-child(1) strong")
-    name_in_basket_text = name_in_basket.text
-    name_on_product_page = browser.find_element_by_css_selector("div.col-sm-6>h1")
-    name_on_product_page_text = name_on_product_page.text
-    assert name_in_basket_text == name_on_product_page_text, "Name of book should be the same"
-    price_in_basket = browser.find_element_by_css_selector("div.alertinner>p:nth-child(1) strong")
-    price_in_basket_text = price_in_basket.text
-    price_on_product_page = browser.find_element_by_css_selector("p.price_color")
-    price_on_product_page_text = price_on_product_page.text
-    assert price_in_basket_text == price_on_product_page_text, "Price of book should be the same"
+    page.should_be_message_about_adding()
+    page.should_be_message_basket_total()
 
 def test_guest_cant_see_success_message(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/?promo=newYear"
@@ -110,15 +102,7 @@ class TestUserAddToBasketFromProductPage():
         page.add_to_basket()
         page.solve_quiz_and_get_code()
         time.sleep(1)
-        name_in_basket = browser.find_element_by_css_selector("#messages>div:nth-child(1) strong")
-        name_in_basket_text = name_in_basket.text
-        name_on_product_page = browser.find_element_by_css_selector("div.col-sm-6>h1")
-        name_on_product_page_text = name_on_product_page.text
-        assert name_in_basket_text == name_on_product_page_text, "Name of book should be the same"
-        price_in_basket = browser.find_element_by_css_selector("div.alertinner>p:nth-child(1) strong")
-        price_in_basket_text = price_in_basket.text
-        price_on_product_page = browser.find_element_by_css_selector("p.price_color")
-        price_on_product_page_text = price_on_product_page.text
-        assert price_in_basket_text == price_on_product_page_text, "Price of book should be the same"
+        page.should_be_message_about_adding()
+        page.should_be_message_basket_total()
 
 
